@@ -1,0 +1,4228 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EpicLuster - The Production Company</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    /* ==========================================
+       CSS VARIABLES & RESET
+       ========================================== */
+    :root {
+        --primary-black: #000000;
+        --primary-orange: #ff6a00;
+        --dark-gray: #0a0a0a;
+        --medium-gray: #1a1a1a;
+        --light-gray: #2a2a2a;
+        --text-white: #ffffff;
+        --text-gray: #b0b0b0;
+        --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-cinematic: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--primary-black);
+        color: var(--text-white);
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
+
+    /* ==========================================
+       NAVIGATION
+       ========================================== */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 5%;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 106, 0, 0.1);
+        transition: var(--transition-smooth);
+    }
+
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--text-white);
+        text-decoration: none;
+        letter-spacing: 2px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .logo span {
+        color: var(--primary-orange);
+    }
+
+    .logo::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-orange);
+        transition: width 0.3s ease;
+    }
+
+    .logo:hover::after {
+        width: 100%;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 3rem;
+    }
+
+    .nav-link {
+        color: var(--text-white);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        position: relative;
+        padding: 0.5rem 0;
+        transition: var(--transition-smooth);
+        cursor: pointer;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-orange);
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px var(--primary-orange);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--primary-orange);
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+    }
+
+    .mobile-menu-toggle span {
+        width: 25px;
+        height: 2px;
+        background: var(--text-white);
+        transition: var(--transition-smooth);
+    }
+
+    /* ==========================================
+       SECTIONS BASE STYLES
+       ========================================== */
+    .section {
+        display: none;
+        min-height: 100vh;
+        padding-top: 80px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 5%;
+    }
+
+    /* ==========================================
+       HOME SECTION - HERO
+       ========================================== */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(circle at 20% 50%, rgba(255, 106, 0, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 106, 0, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .hero-content {
+        text-align: center;
+        z-index: 2;
+        position: relative;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 10vw, 6rem);
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff 0%, #ff6a00 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        color: var(--text-gray);
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        margin-bottom: 3rem;
+        animation: fadeInUp 1s ease-out 0.2s backwards;
+    }
+
+    .hero-contact {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        background: rgba(255, 106, 0, 0.1);
+        border: 1px solid var(--primary-orange);
+        border-radius: 50px;
+        color: var(--primary-orange);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition-smooth);
+        animation: fadeInUp 1s ease-out 0.4s backwards;
+    }
+
+    .hero-contact:hover {
+        background: var(--primary-orange);
+        color: var(--text-white);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 106, 0, 0.3);
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator i {
+        font-size: 2rem;
+        color: var(--primary-orange);
+    }
+
+    /* ==========================================
+       CONTENT SECTIONS
+       ========================================== */
+    .content-section {
+        padding: 5rem 0;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--primary-orange);
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .gallery-item {
+        position: relative;
+        aspect-ratio: 16/9;
+        background: var(--medium-gray);
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(255, 106, 0, 0.2);
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition-smooth);
+    }
+
+    .gallery-item:hover img,
+    .gallery-item:hover video {
+        transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2rem;
+        opacity: 0;
+        transition: var(--transition-smooth);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+    }
+
+    .gallery-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-white);
+    }
+
+    .gallery-category {
+        color: var(--primary-orange);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* What We Do Section */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .service-card {
+        background: var(--medium-gray);
+        padding: 2.5rem;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid transparent;
+        transition: var(--transition-smooth);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 106, 0, 0.1) 0%, transparent 100%);
+        opacity: 0;
+        transition: var(--transition-smooth);
+    }
+
+    .service-card:hover {
+        border-color: var(--primary-orange);
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(255, 106, 0, 0.15);
+    }
+
+    .service-card:hover::before {
+        opacity: 1;
+    }
+
+    .service-icon {
+        font-size: 3rem;
+        color: var(--primary-orange);
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .service-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .service-desc {
+        color: var(--text-gray);
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ==========================================
+       GALLERY TAB SPECIFIC
+       ========================================== */
+    .gallery-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .gallery-tab-btn {
+        background: transparent;
+        border: 1px solid var(--light-gray);
+        color: var(--text-white);
+        padding: 0.8rem 2rem;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .gallery-tab-btn:hover,
+    .gallery-tab-btn.active {
+        background: var(--primary-orange);
+        border-color: var(--primary-orange);
+        color: var(--text-white);
+    }
+
+    .gallery-content {
+        display: none;
+    }
+
+    .gallery-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+
+    /* ==========================================
+       ABOUT TAB
+       ========================================== */
+    .about-hero {
+        padding: 4rem 0;
+        text-align: center;
+        background: linear-gradient(135deg, var(--dark-gray) 0%, var(--primary-black) 100%);
+        margin-bottom: 4rem;
+    }
+
+    .about-text {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-gray);
+    }
+
+    /* Main Departments */
+    .departments-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .department-card {
+        background: var(--medium-gray);
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid transparent;
+        transition: var(--transition-smooth);
+    }
+
+    .department-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary-orange);
+        box-shadow: 0 20px 40px rgba(255, 106, 0, 0.15);
+    }
+
+    .department-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+    .department-image i {
+        font-size: 4rem;
+        color: var(--light-gray);
+    }
+
+    .department-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+    .department-info {
+        padding: 2rem;
+    }
+
+    .department-title {
+        color: var(--text-white);
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .department-desc {
+        color: var(--text-gray);
+        line-height: 1.8;
+        font-size: 0.95rem;
+    }
+
+    .department-services {
+        margin-top: 1.2rem;
+        padding-left: 1.2rem;
+        color: var(--text-gray);
+        font-size: 0.9rem;
+    }
+
+    .department-services li {
+        margin-bottom: 0.4rem;
+    }
+
+    .department-services li::marker {
+        color: var(--primary-orange);
+    }
+
+    /* Why Choose Us */
+    .why-choose-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .why-card {
+        background: var(--medium-gray);
+        padding: 2.2rem;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid transparent;
+        transition: var(--transition-smooth);
+    }
+
+    .why-card:hover {
+        border-color: var(--primary-orange);
+        transform: translateY(-8px);
+    }
+
+    .why-icon {
+        font-size: 2.8rem;
+        color: var(--primary-orange);
+        margin-bottom: 1.2rem;
+    }
+
+    .why-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .why-desc {
+        color: var(--text-gray);
+        font-size: 0.92rem;
+    }
+
+    /* Awards Won */
+    .awards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .award-card {
+        min-height: 180px;
+        background: var(--medium-gray);
+        border: 1px solid var(--light-gray);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        transition: var(--transition-smooth);
+    }
+
+    .award-card:hover {
+        border-color: var(--primary-orange);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(255, 106, 0, 0.15);
+    }
+
+    .award-card img {
+        max-width: 100%;
+        max-height: 100px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .award-placeholder {
+        color: var(--text-gray);
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    /* Cast / Us Section */
+    .cast-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .cast-card {
+        text-align: center;
+        transition: var(--transition-smooth);
+    }
+
+    .cast-card:hover {
+        transform: scale(1.05);
+    }
+
+    .cast-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: var(--medium-gray);
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid transparent;
+        transition: var(--transition-smooth);
+        overflow: hidden;
+    }
+
+    .cast-card:hover .cast-image {
+        border-color: var(--primary-orange);
+        box-shadow: 0 0 20px rgba(255, 106, 0, 0.4);
+    }
+
+    .cast-image i {
+        font-size: 3rem;
+        color: var(--light-gray);
+    }
+
+    .cast-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .cast-name {
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+
+    .cast-award {
+        font-size: 0.85rem;
+        color: var(--primary-orange);
+    }
+
+    /* ==========================================
+       CONTACT TAB
+       ========================================== */
+    .contact-section {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        padding: 4rem 0;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .contact-info h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: var(--medium-gray);
+        border-radius: 10px;
+        transition: var(--transition-smooth);
+        border: 1px solid transparent;
+    }
+
+    .contact-item:hover {
+        border-color: var(--primary-orange);
+        transform: translateX(10px);
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 106, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-orange);
+        font-size: 1.3rem;
+        transition: var(--transition-smooth);
+    }
+
+    .contact-item:hover .contact-icon {
+        background: var(--primary-orange);
+        color: var(--text-white);
+        transform: rotate(360deg);
+    }
+
+    .contact-details h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .contact-details p,
+    .contact-details a {
+        color: var(--text-gray);
+        text-decoration: none;
+        transition: var(--transition-smooth);
+    }
+
+    .contact-details a:hover {
+        color: var(--primary-orange);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 3rem;
+    }
+
+    .social-link {
+        width: 50px;
+        height: 50px;
+        border: 1px solid var(--light-gray);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-white);
+        font-size: 1.3rem;
+        transition: var(--transition-smooth);
+        text-decoration: none;
+    }
+
+    .social-link:hover {
+        background: var(--primary-orange);
+        border-color: var(--primary-orange);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 106, 0, 0.3);
+    }
+
+    .contact-visual {
+        position: relative;
+        height: 600px;
+        background: linear-gradient(135deg, var(--medium-gray) 0%, var(--dark-gray) 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .contact-visual::before {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 106, 0, 0.1) 0%, transparent 70%);
+        animation: rotate 20s linear infinite;
+    }
+
+    .contact-visual i {
+        font-size: 10rem;
+        color: var(--primary-orange);
+        opacity: 0.3;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Portfolio CTA Buttons */
+    .portfolio-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .portfolio-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 1rem 1.2rem;
+        border-radius: 10px;
+        background: var(--medium-gray);
+        border: 1px solid var(--light-gray);
+        color: var(--text-white);
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition-smooth);
+    }
+
+    .portfolio-button i {
+        color: var(--primary-orange);
+        font-size: 1.1rem;
+        transition: var(--transition-smooth);
+    }
+
+    .portfolio-button:hover {
+        background: var(--primary-orange);
+        border-color: var(--primary-orange);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(255, 106, 0, 0.25);
+    }
+
+    .portfolio-button:hover i {
+        color: var(--text-white);
+    }
+
+    /* Contact Form */
+    .contact-form-wrapper {
+        margin-bottom: 4rem;
+        background: var(--medium-gray);
+        border-radius: 20px;
+        padding: 3rem;
+        border: 1px solid var(--light-gray);
+    }
+
+    .contact-form-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .contact-form-header h2 {
+        font-size: 2.2rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .contact-form-header p {
+        color: var(--text-gray);
+    }
+
+    .contact-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .form-group label {
+        margin-bottom: 0.6rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-white);
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 1rem 1.1rem;
+        background: var(--dark-gray);
+        border: 1px solid var(--light-gray);
+        border-radius: 10px;
+        color: var(--text-white);
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.95rem;
+        outline: none;
+        transition: var(--transition-smooth);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: var(--primary-orange);
+        box-shadow: 0 0 15px rgba(255, 106, 0, 0.12);
+    }
+
+    .form-group textarea {
+        min-height: 160px;
+        resize: vertical;
+    }
+
+    .submit-button {
+        grid-column: 1 / -1;
+        border: none;
+        cursor: pointer;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        background: var(--primary-orange);
+        color: var(--text-white);
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: var(--transition-smooth);
+        justify-self: center;
+        min-width: 220px;
+    }
+
+    .submit-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 106, 0, 0.3);
+    }
+
+    /* ==========================================
+       PRIVACY POLICY
+       ========================================== */
+    .privacy-section {
+        padding: 5rem 0;
+    }
+
+    .privacy-content {
+        max-width: 950px;
+        margin: 0 auto;
+        background: var(--medium-gray);
+        border-radius: 20px;
+        padding: 3rem;
+        border: 1px solid var(--light-gray);
+    }
+
+    .privacy-content h2 {
+        margin-bottom: 1rem;
+    }
+
+    .privacy-content h3 {
+        color: var(--primary-orange);
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .privacy-content p,
+    .privacy-content li {
+        color: var(--text-gray);
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+
+    .privacy-content ul {
+        padding-left: 1.5rem;
+        margin-top: 0.7rem;
+    }
+
+    .privacy-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: 2rem;
+        color: var(--primary-orange);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition-smooth);
+    }
+
+    .privacy-back:hover {
+        color: var(--text-white);
+        transform: translateX(-4px);
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    footer {
+        background: var(--dark-gray);
+        padding: 3rem 0;
+        text-align: center;
+        border-top: 1px solid var(--light-gray);
+    }
+
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 5%;
+    }
+
+    .footer-logo {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+    }
+
+    .footer-logo span {
+        color: var(--primary-orange);
+    }
+
+    .footer-text {
+        color: var(--text-gray);
+        margin-bottom: 2rem;
+    }
+
+    .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid var(--light-gray);
+        color: var(--text-gray);
+        font-size: 0.9rem;
+    }
+
+    .privacy-link {
+        display: inline-block;
+        margin-top: 0.8rem;
+        color: var(--primary-orange);
+        text-decoration: none;
+        transition: var(--transition-smooth);
+    }
+
+    .privacy-link:hover {
+        color: var(--text-white);
+    }
+
+    /* ==========================================
+       ANIMATIONS
+       ========================================== */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+        40% {
+            transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+            transform: translateX(-50%) translateY(-5px);
+        }
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .fade-in-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ==========================================
+       RESPONSIVE DESIGN
+       ========================================== */
+    @media (max-width: 968px) {
+
+        .nav-menu {
+            position: fixed;
+            left: -100%;
+            top: 70px;
+            flex-direction: column;
+            background: var(--dark-gray);
+            width: 100%;
+            text-align: center;
+            transition: 0.3s;
+            padding: 2rem 0;
+            gap: 1.5rem;
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-visual {
+            height: 300px;
+            order: -1;
+        }
+
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .departments-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .portfolio-buttons {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cast-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .contact-form {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full-width,
+        .submit-button {
+            grid-column: 1;
+        }
+
+        .contact-form-wrapper {
+            padding: 2rem;
+        }
+
+        .privacy-content {
+            padding: 2rem;
+        }
+    }
+
+    /* Utility Classes */
+    .text-orange {
+        color: var(--primary-orange);
+    }
+
+    .bg-dark {
+        background: var(--dark-gray);
+    }
+
+    .mt-4 {
+        margin-top: 2rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 2rem;
+    }
+
+    /* Loading Screen */
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+    }
+
+    .loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loader-content {
+        text-align: center;
+    }
+
+    .loader-logo {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        animation: pulse 1.5s infinite;
+    }
+
+    .loader-bar {
+        width: 200px;
+        height: 3px;
+        background: var(--light-gray);
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .loader-progress {
+        height: 100%;
+        background: var(--primary-orange);
+        width: 0%;
+        animation: load 2s ease-in-out forwards;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    @keyframes load {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+</style>
+
+<base target="_blank">
+</head>
+
+<body>
+
+<!-- Loading Screen -->
+<div class="loader hidden" id="loader">
+
+    <div class="loader-content">
+
+        <div class="loader-logo">
+            EPIC<span>LUSTER</span>
+        </div>
+
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Navigation -->
+<nav class="navbar" style="background: rgba(0, 0, 0, 0.95); padding: 1rem 5%;">
+
+    <div class="nav-container">
+
+        <a href="#" class="logo" onclick="showSection('home'); return false;">
+            EPIC<span>LUSTER</span>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+
+            <li>
+                <a class="nav-link active" onclick="showSection('home')">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" onclick="showSection('gallery')">
+                    Gallery
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" onclick="showSection('about')">
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" onclick="showSection('contacts')">
+                    Contacts
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+
+            <span style="transform: none;"></span>
+            <span style="transform: none; opacity: 1;"></span>
+            <span style="transform: none;"></span>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==========================================
+     HOME SECTION
+     ========================================== -->
+<section id="home" class="section active">
+
+    <!-- Hero -->
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <h1 class="hero-title">
+                EPICLUSTER
+            </h1>
+
+            <p class="hero-subtitle">
+                The Production Company
+            </p>
+
+            <p class="hero-subtitle" style="font-size: 1.2rem; margin-bottom: 3rem;">
+                "Crafting Visual Stories That Inspire."
+            </p>
+
+            <a href="#contacts" class="hero-contact" onclick="showSection('contacts'); return false;">
+
+                <i class="fas fa-phone"></i>
+
+                <span>
+                    Contact Us
+                </span>
+
+            </a>
+
+        </div>
+
+        <div class="scroll-indicator">
+
+            <i class="fas fa-chevron-down"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- What We Do -->
+    <div class="content-section">
+
+        <div class="container">
+
+            <div class="section-header fade-in-scroll visible">
+
+                <h2 class="section-title">
+                    What We Do
+                </h2>
+
+                <p style="color: var(--text-gray);">
+                    Comprehensive media production services tailored to your vision
+                </p>
+
+            </div>
+
+
+            <div class="services-grid">
+
+                <!-- Existing Services -->
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-video service-icon"></i>
+
+                    <h3 class="service-title">
+                        Brand Videos
+                    </h3>
+
+                    <p class="service-desc">
+                        Compelling visual narratives that define your brand identity and connect with your audience emotionally.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-ad service-icon"></i>
+
+                    <h3 class="service-title">
+                        Advertisements
+                    </h3>
+
+                    <p class="service-desc">
+                        High-impact commercial content designed to capture attention and drive conversions across all platforms.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-box-open service-icon"></i>
+
+                    <h3 class="service-title">
+                        Product Videos
+                    </h3>
+
+                    <p class="service-desc">
+                        Showcase your products with cinematic quality that highlights features and benefits beautifully.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-film service-icon"></i>
+
+                    <h3 class="service-title">
+                        Films
+                    </h3>
+
+                    <p class="service-desc">
+                        From short films to feature-length productions, we bring cinematic excellence to every frame.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-broadcast-tower service-icon"></i>
+
+                    <h3 class="service-title">
+                        Live Productions
+                    </h3>
+
+                    <p class="service-desc">
+                        Professional multi-camera setups for events, concerts, and live streaming with broadcast quality.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-blog service-icon"></i>
+
+                    <h3 class="service-title">
+                        Blogs &amp; Content
+                    </h3>
+
+                    <p class="service-desc">
+                        Engaging digital content optimized for social media and web platforms to grow your presence.
+                    </p>
+
+                </div>
+
+
+                <!-- New Services -->
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-music service-icon"></i>
+
+                    <h3 class="service-title">
+                        Music Videos
+                    </h3>
+
+                    <p class="service-desc">
+                        Creative and cinematic music videos designed to visually enhance your sound and artistic identity.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-share-nodes service-icon"></i>
+
+                    <h3 class="service-title">
+                        Social Media Contents
+                    </h3>
+
+                    <p class="service-desc">
+                        Engaging short-form and branded content created for modern social media platforms and digital audiences.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-helicopter service-icon"></i>
+
+                    <h3 class="service-title">
+                        Drone Videography
+                    </h3>
+
+                    <p class="service-desc">
+                        Stunning aerial visuals that add scale, movement, and cinematic perspective to your productions.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-scissors service-icon"></i>
+
+                    <h3 class="service-title">
+                        Video Editing
+                    </h3>
+
+                    <p class="service-desc">
+                        Professional editing that transforms raw footage into polished, engaging, and story-driven final content.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-palette service-icon"></i>
+
+                    <h3 class="service-title">
+                        Color Grading
+                    </h3>
+
+                    <p class="service-desc">
+                        Cinematic color finishing that enhances mood, visual consistency, and the overall look of your production.
+                    </p>
+
+                </div>
+
+
+                <div class="service-card fade-in-scroll visible">
+
+                    <i class="fas fa-camera service-icon"></i>
+
+                    <h3 class="service-title">
+                        Photography
+                    </h3>
+
+                    <p class="service-desc">
+                        Professional photography for brands, products, events, productions, and creative visual campaigns.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Job Stills Section -->
+    <div class="content-section bg-dark">
+
+        <div class="container">
+
+            <div class="section-header fade-in-scroll visible">
+
+                <h2 class="section-title">
+                    A glimpse into our diary
+                </h2>
+
+                <p style="color: var(--text-gray);">
+                    Capturing moments from our magics
+                </p>
+
+            </div>
+
+
+            <div class="gallery-grid">
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="10.PNG" alt="Husma Short Cinema">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Village Bird Eye Dronography
+                        </h3>
+
+                        <span class="gallery-category">
+                            Videography Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="7.jpg" alt="Product Launch">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Single Portraits
+                        </h3>
+
+                        <span class="gallery-category">
+                            Photography Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="10.jpg" alt="Cinematic Shoot">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            The Option Short Video
+                        </h3>
+
+                        <span class="gallery-category">
+                            Cinema Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="11.png" alt="Job Still 4">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Dhamma Sermon event coverage
+                        </h3>
+
+                        <span class="gallery-category">
+                            Videography Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="12.png" alt="Job Still 5">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Sri Dalada Maligawa Documentary
+                        </h3>
+
+                        <span class="gallery-category">
+                            Videography Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="70.png" alt="Job Still 6">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Kalawartha Short Cinema
+                        </h3>
+
+                        <span class="gallery-category">
+                            Cinema Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="15.png" alt="Job Still 7">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Aradhana Promotional Video
+                        </h3>
+
+                        <span class="gallery-category">
+                            Videography Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="16.png" alt="Job Still 8">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Green Harvest Lanka Product Video
+                        </h3>
+
+                        <span class="gallery-category">
+                            Videography Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll visible">
+
+                    <img src="14.png" alt="Job Still 9">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Jekarenda Book Reveal Event Coverage
+                        </h3>
+
+                        <span class="gallery-category">
+                            Videography Department
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Behind The Scenes -->
+    <div class="content-section">
+
+        <div class="container">
+
+            <div class="section-header fade-in-scroll visible">
+
+                <h2 class="section-title">
+                    Behind The Scenes
+                </h2>
+
+                <p style="color: var(--text-gray);">
+                    The magic happens here
+                </p>
+
+            </div>
+
+
+            <div class="gallery-grid">
+
+                <div class="gallery-item fade-in-scroll">
+
+                    <img src="17.jpg" alt="Behind the Scenes 1">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Pre-Production Workflow
+                        </h3>
+
+                        <span class="gallery-category">
+                            Stage I
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll">
+
+                    <img src="18.png" alt="Behind the Scenes 2">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Production Workflow
+                        </h3>
+
+                        <span class="gallery-category">
+                            Stage II
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gallery-item fade-in-scroll">
+
+                    <img src="19.JPG" alt="Behind the Scenes 3">
+
+                    <div class="gallery-overlay">
+
+                        <h3 class="gallery-title">
+                            Post-Production Workflow
+                        </h3>
+
+                        <span class="gallery-category">
+                            Stage III
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     GALLERY SECTION
+     ========================================== -->
+<section id="gallery" class="section">
+
+    <div class="content-section" style="padding-top: 120px;">
+
+        <div class="container">
+
+            <div class="section-header fade-in-scroll visible">
+
+                <h2 class="section-title">
+                    Our Gallery
+                </h2>
+
+                <p style="color: var(--text-gray);">
+                    Explore our Magical portfolio
+                </p>
+
+            </div>
+
+
+            <div class="gallery-tabs fade-in-scroll visible">
+
+                <button class="gallery-tab-btn" onclick="filterGallery('productions')">
+                    Videography &amp; Cinema Magics
+                </button>
+
+                <button class="gallery-tab-btn active" onclick="filterGallery('stills')">
+                    Photography Magics
+                </button>
+
+            </div>
+
+
+            <!-- Videography & Cinema Stills -->
+            <div id="productions" class="gallery-content">
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-item">
+
+                        <img src="70.png" alt="Production 1">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Kalawartha Short Cinema
+                            </h3>
+
+                            <span class="gallery-category">
+                                Cinema Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="20.png" alt="Production 2">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Ruwanweli Maha Seya Documentary Video
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="18.png" alt="Production 3">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Kalawartha Short Cinema BTS
+                            </h3>
+
+                            <span class="gallery-category">
+                                Cinema Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="21.png" alt="Production 4">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Dhamma Sermon Event Coverage.2
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="22.png" alt="Production 5">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Musical Event Coverage
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="24.png" alt="Production 6">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Promotional Video Teaser
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="23.png" alt="Production 7">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Event Coverage.2
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="25.png" alt="Production 8">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Product Video Shoot
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="27.png" alt="Production 9">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Commercial Ad
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="13.png" alt="Production 10">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Sankhara Short Cinema
+                            </h3>
+
+                            <span class="gallery-category">
+                                Cinema Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="28.jpg" alt="Production 11">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Riverston Documentary
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="10.jpg" alt="Production 12">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                The Option Short Video
+                            </h3>
+
+                            <span class="gallery-category">
+                                Cinema Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="29.jpg" alt="Production 13">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Drone Videography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="26.png" alt="Production 14">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Product Videography.3
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="30.png" alt="Production 15">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Dronography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="31.JPG" alt="Production 16">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Perahera Event Live Broadcast
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="32.JPG" alt="Production 17">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Cinematography Researches
+                            </h3>
+
+                            <span class="gallery-category">
+                                Cinema Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="33.JPG" alt="Production 18">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Birthday Event Coverage
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="34.JPG" alt="Production 19">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Festival Teaser Video
+                            </h3>
+
+                            <span class="gallery-category">
+                                Cinema Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="35.JPG" alt="Production 20">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Music Event Coverage.2
+                            </h3>
+
+                            <span class="gallery-category">
+                                Videography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="36.jpg" alt="Production 21">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Cinema Production BTS.2
+                            </h3>
+
+                            <span class="gallery-category">
+                                Cinema Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Photo Stills -->
+            <div id="stills" class="gallery-content active">
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-item">
+
+                        <img src="7.JPG" alt="Photo Still 1">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Single Portraits
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="37.jpg" alt="Photo Still 2">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Event Photography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="39.jpg" alt="Photo Still 3">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Commercial Shoots
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="38.jpg" alt="Photo Still 4">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Outdoor Event Photography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="40.jpg" alt="Photo Still 5">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Landscape Photography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="43.jpg" alt="Photo Still 6">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Kids Shoot
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="45.jpg" alt="Photo Still 7">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Portrait.2
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="48.jpg" alt="Photo Still 8">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Portrait.3
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="49.jpg" alt="Photo Still 9">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Concept Shoots
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="53.jpg" alt="Photo Still 10">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Portraits.4
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="56.jpg" alt="Photo Still 11">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Behind The Scene Photography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="57.jpg" alt="Photo Still 12">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Event Photography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="41.jpg" alt="Photo Still 13">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Documentary Shoots
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="61.jpg" alt="Photo Still 14">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Subject Photography
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="60.jpg" alt="Photo Still 15">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Collaborated Event Shoots
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="63.jpg" alt="Photo Still 16">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Event Photography.2
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="65.jpg" alt="Photo Still 17">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Event Photography.3
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-item">
+
+                        <img src="64.jpg" alt="Photo Still 18">
+
+                        <div class="gallery-overlay">
+
+                            <h3 class="gallery-title">
+                                Event Photography.4
+                            </h3>
+
+                            <span class="gallery-category">
+                                Photography Department
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     ABOUT SECTION
+     ========================================== -->
+<section id="about" class="section">
+
+    <!-- About Hero -->
+    <div class="about-hero">
+
+        <div class="container">
+
+            <h2 class="section-title fade-in-scroll visible">
+                Who We Are
+            </h2>
+
+            <p class="about-text fade-in-scroll visible">
+
+                We are EpicLuster, a professional production company dedicated to creating powerful visual stories.
+                We specialize in cinematic storytelling, brand films, advertisements, commercial production, and
+                creative digital content. Our passion is transforming ideas into impactful visual experiences that
+                elevate brands and inspire audiences.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Main Departments -->
+    <div class="content-section">
+
+        <div class="container">
+
+            <div class="section-header fade-in-scroll visible">
+
+                <h3 class="section-title">
+                    We Have Four Magical Departments
+                </h3>
+
+                <p style="color: var(--text-gray);">
+                    Four creative divisions working together to bring every magical visions to life
+                </p>
+
+            </div>
+
+
+            <div class="departments-grid">
+
+                <!-- Department 1 -->
+                <div class="department-card fade-in-scroll visible">
+
+                    <div class="department-image">
+
+                        <i class="fas fa-film"></i>
+
+                        <img src="67.jpg" alt="Video Production">
+
+                    </div>
+
+
+                    <div class="department-info">
+
+                        <h3 class="department-title">
+                            Videography Department
+                        </h3>
+
+                        <p class="department-desc">
+                            We are committed to providing any video production support you require through Epicluster, ensuring the highest quality.
+                        </p>
+
+                        <ul class="department-services">
+
+                            <li>Short Cinema Productions</li>
+                            <li>Advertisements</li>
+                            <li>Commercial &amp; Promo Videos</li>
+                            <li>Music Videos</li>
+			    <li>Event Videography</li>
+			    <li>Drone Videography and many more...</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Department 2 -->
+                <div class="department-card fade-in-scroll visible">
+
+                    <div class="department-image">
+
+                        <i class="fas fa-bullhorn"></i>
+
+                        <img src="66.jpg" alt="Commercial &amp; Digital Content">
+
+                    </div>
+
+
+                    <div class="department-info">
+
+                        <h3 class="department-title">
+                            Photography Department
+                        </h3>
+
+                        <p class="department-desc">
+                            In photography, we provide a service characterized by exceptional skill in viewing the world through a highly experienced, artistic lens.
+                        </p>
+
+                        <ul class="department-services">
+
+                            <li>Portraits</li>
+                            <li>Event Photography</li>
+                            <li>Wedding Photoshoot Packages</li>
+                            <li>Interior &amp; Real Estate Photography</li>
+			    <li>Photo Editing</li>
+			    <li>Flyer Designing and many more...</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Department 3 -->
+                <div class="department-card fade-in-scroll visible">
+
+                    <div class="department-image">
+
+                        <i class="fas fa-photo-film"></i>
+
+                        <img src="71.jpg" alt="Post Production">
+
+                    </div>
+
+
+                    <div class="department-info">
+
+                        <h3 class="department-title">
+                            Cinema Department
+                        </h3>
+
+                        <p class="department-desc">
+                            We are ready to bring your cinematic dream to life by handling the art of cinema with the highest level of artistry and quality.
+                        </p>
+
+                        <ul class="department-services">
+
+                            <li>Short Cinema Production</li>
+                            <li>Script Writing &amp; Concept Development</li>
+                            <li>Film Crew Allocation</li>
+                            <li>Film Editing</li>
+			    <li>BTS Videography</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Department 4 -->
+                <div class="department-card fade-in-scroll visible">
+
+                    <div class="department-image">
+
+                        <i class="fas fa-camera-retro"></i>
+
+                        <img src="72.png" alt="Photography &amp; Aerial">
+
+                    </div>
+
+
+                    <div class="department-info">
+
+                        <h3 class="department-title">
+                            EpicLuster Academy (Coming Soon)
+                        </h3>
+
+                        <p class="department-desc">
+                           Join EpicLuster Academy to learn the basics of cinema from experienced filmmakers open to everyone, regardless of age.
+                        </p>
+
+                        <ul class="department-services">
+
+                            <li>15 Modules to Study</li>
+                            <li>With Theories &amp; Practicals</li>
+                            <li>An opportunity to create a short film as a final project</li>
+                            <li>03 Month Workshop Course</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Why Choose Us -->
+    <div class="content-section bg-dark">
+
+        <div class="container">
+
+            <div class="section-header fade-in-scroll visible">
+
+                <h2 class="section-title">
+                    Why Choose Us?
+                </h2>
+
+                <p style="color: var(--text-gray);">
+                    The reasons behind choosing EpicLuster for your next production
+                </p>
+
+            </div>
+
+
+            <div class="why-choose-grid">
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-clapperboard why-icon"></i>
+
+                    <h3 class="why-title">
+                        Cinematic Quality
+                    </h3>
+
+                    <p class="why-desc">
+                        We focus on professional visuals, storytelling, composition, and cinematic presentation.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-lightbulb why-icon"></i>
+
+                    <h3 class="why-title">
+                        Creative Thinking
+                    </h3>
+
+                    <p class="why-desc">
+                        Every project receives creative treatment designed around its unique message and audience.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-layer-group why-icon"></i>
+
+                    <h3 class="why-title">
+                        Complete Production
+                    </h3>
+
+                    <p class="why-desc">
+                        From pre-production and filming to editing, color grading, and final delivery, we cover the full process.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-users why-icon"></i>
+
+                    <h3 class="why-title">
+                        Dedicated Team
+                    </h3>
+
+                    <p class="why-desc">
+                        Our creative and technical team works closely together to deliver consistent results.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-bolt why-icon"></i>
+
+                    <h3 class="why-title">
+                        Modern Approach
+                    </h3>
+
+                    <p class="why-desc">
+                        We combine modern production techniques with current digital content trends and platforms.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-award why-icon"></i>
+
+                    <h3 class="why-title">
+                        Proven Creativity
+                    </h3>
+
+                    <p class="why-desc">
+                        Our portfolio and award-winning work reflect our commitment to creating memorable visual stories.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-handshake why-icon"></i>
+
+                    <h3 class="why-title">
+                        Client Focused
+                    </h3>
+
+                    <p class="why-desc">
+                        We listen carefully to our clients and build every production around their goals, ideas, and expectations.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card fade-in-scroll visible">
+
+                    <i class="fas fa-chart-line why-icon"></i>
+
+                    <h3 class="why-title">
+                        Results Driven
+                    </h3>
+
+                    <p class="why-desc">
+                        Our content is created to make an impact, strengthen communication, and help brands stand out.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- Us Section -->
+    <div class="content-section bg-dark">
+
+        <div class="container">
+
+            <div class="section-header fade-in-scroll visible">
+
+                <h2 class="section-title">
+                    Us
+                </h2>
+
+                <p style="color: var(--text-gray);">
+                    Our Core Team
+                </p>
+
+            </div>
+
+
+            <div class="cast-grid">
+
+                <div class="cast-card fade-in-scroll visible">
+
+                    <div class="cast-image">
+
+                        <i class="fas fa-user" style="display: none;"></i>
+
+                        <img src="1.jpeg" alt="Dheeman Sasmitha" style="display: block;">
+
+                    </div>
+
+                    <h3 class="cast-name">
+                        Danindu Hathurusinghe
+                    </h3>
+
+                    <p class="cast-award">
+                        Founder &amp; Director
+                    </p>
+
+                </div>
+
+
+                <div class="cast-card fade-in-scroll visible">
+
+                    <div class="cast-image">
+
+                        <i class="fas fa-user" style="display: none;"></i>
+
+                        <img src="2.jpeg" alt="Kesara Banneheka" style="display: block;">
+
+                    </div>
+
+                    <h3 class="cast-name">
+                        Kesara Heshani
+                    </h3>
+
+                    <p class="cast-award">
+                        Co-Director
+                    </p>
+
+                </div>
+
+
+                <div class="cast-card fade-in-scroll visible">
+
+                    <div class="cast-image">
+
+                        <i class="fas fa-user" style="display: none;"></i>
+
+                        <img src="3.jpg" alt="Sadeesha Sewmi" style="display: block;">
+
+                    </div>
+
+                    <h3 class="cast-name">
+                        Anuhas Dilantha
+                    </h3>
+
+                    <p class="cast-award">
+                        Gaffer
+                    </p>
+
+                </div>
+
+
+                <div class="cast-card fade-in-scroll visible">
+
+                    <div class="cast-image">
+
+                        <i class="fas fa-user" style="display: none;"></i>
+
+                        <img src="4.jpg" alt="Jeshan Anupama" style="display: block;">
+
+                    </div>
+
+                    <h3 class="cast-name">
+                        Daham Nimsara
+                    </h3>
+
+                    <p class="cast-award">
+                        Music Composer
+                    </p>
+
+                </div>
+
+
+                <div class="cast-card fade-in-scroll visible">
+
+                    <div class="cast-image">
+
+                        <i class="fas fa-user" style="display: none;"></i>
+
+                        <img src="5.jpeg" alt="Dulanjana" style="display: block;">
+
+                    </div>
+
+                    <h3 class="cast-name">
+                        Jeshan Wanniarachchi
+                    </h3>
+
+                    <p class="cast-award">
+                        Actor
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="text-center mt-4 fade-in-scroll visible" style="text-align: center; color: var(--text-gray); margin-top: 3rem;">
+
+                And many more experienced experts...
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     CONTACTS SECTION
+     ========================================== -->
+<section id="contacts" class="section">
+
+    <div class="contact-section">
+
+        <div class="container">
+
+
+            <!-- Contact Form FIRST -->
+            <div class="contact-form-wrapper fade-in-scroll visible">
+
+                <div class="contact-form-header">
+
+                    <h2>
+                        Send Us a Message
+                    </h2>
+
+                    <p>
+                        Tell us about your project and send the details directly to our WhatsApp.
+                    </p>
+
+                </div>
+
+
+                <!-- WhatsApp Contact Form -->
+                <form class="contact-form" id="whatsappForm">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input type="text" id="name" name="name" placeholder="Your Name" required="">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required="">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="whatsapp">
+                            WhatsApp Number
+                        </label>
+
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+94 XX XXX XXXX" required="">
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="message">
+                            Message
+                        </label>
+
+                        <textarea id="message" name="message" placeholder="I want to produce a music video with you. Do you have any offers?" required=""></textarea>
+
+                    </div>
+
+
+                    <button type="submit" class="submit-button">
+
+                        <i class="fab fa-whatsapp"></i>
+                        Send via WhatsApp
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Other contact details BELOW the form -->
+            <div class="contact-grid">
+
+                <!-- Contact Info -->
+                <div class="contact-info fade-in-scroll visible">
+
+                    <h2>
+                        Get In Touch
+                    </h2>
+
+                    <p style="color: var(--text-gray); margin-bottom: 3rem;">
+                        Ready to create something epic? Contact us today.
+                    </p>
+
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+
+                            <i class="fas fa-phone"></i>
+
+                        </div>
+
+
+                        <div class="contact-details">
+
+                            <h3>
+                                Phone or WhatsApp
+                            </h3>
+
+                            <a href="tel:+94770608910">
+                                +94 77 060 8910
+                            </a>
+
+                            <br>
+
+                            <a href="tel:+94787313065">
+                                +94 78 731 3065
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+
+                            <i class="fas fa-envelope"></i>
+
+                        </div>
+
+
+                        <div class="contact-details">
+
+                            <h3>
+                                Email
+                            </h3>
+
+                            <a href="mailto:epicluster.tpc@gmail.com">
+                                epicluster.tpc@gmail.com
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Existing Social Links -->
+                    <div class="social-links">
+
+                        <a href="https://www.facebook.com/share/1HkKUPDyLM/?mibextid=wwXIfr" target="_blank" class="social-link" title="Facebook">
+
+                            <i class="fab fa-facebook-f"></i>
+
+                        </a>
+
+
+                        <a href="https://www.tiktok.com/@itzdanindu?_r=1&amp;_t=ZS-93rTWqKqkmS" target="_blank" class="social-link" title="TikTok">
+
+                            <i class="fab fa-tiktok"></i>
+
+                        </a>
+
+
+                        <a href="https://youtube.com/@epicluster" target="_blank" class="social-link" title="YouTube Main">
+
+                            <i class="fab fa-youtube"></i>
+
+                        </a>
+
+
+                        <a href="https://youtube.com/@daninduhathurusinghe" target="_blank" class="social-link" title="Corporate Channel">
+
+                            <i class="fas fa-building"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- Visual Portfolio Buttons -->
+                    <div class="portfolio-buttons">
+
+                        <a href="https://www.facebook.com/share/1HkKUPDyLM/?mibextid=wwXIfr" target="_blank" class="portfolio-button">
+
+                            <i class="fab fa-facebook-f"></i>
+
+                            <span>
+                               Click for Facebook
+                            </span>
+
+                        </a>
+
+
+                        <a href="https://youtube.com/@epicluster" target="_blank" class="portfolio-button">
+
+                            <i class="fab fa-youtube"></i>
+
+                            <span>
+                                Click for Youtube
+                            </span>
+
+                        </a>
+
+
+                        <a href="https://www.tiktok.com/@itzdanindu?_r=1&amp;_t=ZS-93rTWqKqkmS" target="_blank" class="portfolio-button">
+
+                            <i class="fab fa-tiktok"></i>
+
+                            <span>
+                               Click for Tiktok
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Contact Visual -->
+                <div class="contact-visual fade-in-scroll visible">
+
+                    <i class="fas fa-film"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     PRIVACY POLICY SECTION
+     ========================================== -->
+<section id="privacy" class="section">
+
+    <div class="privacy-section">
+
+        <div class="container">
+
+            <div class="privacy-content fade-in-scroll">
+
+                <h2 class="section-title">
+                    Privacy Policies
+                </h2>
+
+
+                <p style="margin-top: 2rem;">
+                    <strong>Effective Date:</strong>
+                    7 September 2026
+                </p>
+
+
+                <p style="margin-top: 1rem;">
+
+                    EpicLuster ("we", "us", or "our") respects your privacy and is committed to protecting
+                    the personal information you provide when using our website, contacting our company,
+                    or requesting our media production services.
+
+                </p>
+
+
+                <h3>
+                    1. Information We Collect
+                </h3>
+
+                <p>
+
+                    We may collect information that you voluntarily provide through our website,
+                    including your name, email address, WhatsApp or telephone number, project details,
+                    messages, and other information you choose to provide when contacting us.
+
+                </p>
+
+
+                <h3>
+                    2. How We Use Your Information
+                </h3>
+
+                <p>
+
+                    Information provided to EpicLuster may be used to respond to enquiries, discuss
+                    production requirements, provide quotations, communicate about projects, provide
+                    requested services, and improve our website and customer experience.
+
+                </p>
+
+
+                <h3>
+                    3. Communication
+                </h3>
+
+                <p>
+
+                    By submitting your contact information, you understand that EpicLuster may contact
+                    you regarding your enquiry or requested service through email, telephone, WhatsApp,
+                    or another communication method you have provided.
+
+                </p>
+
+
+                <h3>
+                    4. Media and Project Materials
+                </h3>
+
+                <p>
+
+                    Any photographs, videos, documents, project references, or other materials you
+                    voluntarily provide to EpicLuster will be treated as project-related information
+                    and used only for legitimate business, communication, production, or service purposes,
+                    unless otherwise agreed with you.
+
+                </p>
+
+
+                <h3>
+                    5. Website Information
+                </h3>
+
+                <p>
+
+                    Our website may use standard technical information such as browser type, device
+                    information, and general website usage information. This information may help us
+                    maintain, secure, and improve the website.
+
+                </p>
+
+
+                <h3>
+                    6. Third-Party Services
+                </h3>
+
+                <p>
+
+                    Our website may contain links to third-party platforms such as Facebook, YouTube,
+                    TikTok, or other online services. These third-party websites operate under their own
+                    privacy policies, and EpicLuster is not responsible for their privacy practices.
+
+                </p>
+
+
+                <h3>
+                    7. Information Security
+                </h3>
+
+                <p>
+
+                    We take reasonable measures to protect personal information from unauthorized access,
+                    misuse, alteration, disclosure, or destruction. However, no method of transmission
+                    or electronic storage can be guaranteed to be completely secure.
+
+                </p>
+
+
+                <h3>
+                    8. Information Sharing
+                </h3>
+
+                <p>
+
+                    EpicLuster does not intentionally sell or rent your personal information. Information
+                    may be shared only where reasonably necessary to provide requested services, operate
+                    our business, comply with applicable legal obligations, or protect our rights and safety.
+
+                </p>
+
+
+                <h3>
+                    9. Data Retention
+                </h3>
+
+                <p>
+
+                    We may retain contact and project information for as long as reasonably necessary
+                    for business administration, project records, customer support, legal requirements,
+                    accounting, or other legitimate business purposes.
+
+                </p>
+
+
+                <h3>
+                    10. Your Rights
+                </h3>
+
+                <p>
+
+                    Depending on applicable law, you may have rights concerning your personal information,
+                    including requesting access, correction, or deletion of information you have provided
+                    to us. Requests can be made using the contact information provided on this website.
+
+                </p>
+
+
+                <h3>
+                    11. Children's Privacy
+                </h3>
+
+                <p>
+
+                    Our website and services are not intentionally directed toward children for the
+                    purpose of collecting personal information. We do not knowingly request unnecessary
+                    personal information from children.
+
+                </p>
+
+
+                <h3>
+                    12. Changes to This Policy
+                </h3>
+
+                <p>
+
+                    EpicLuster may update this Privacy Policy from time to time to reflect changes in
+                    our services, website, legal requirements, or business practices. Any updated policy
+                    will be displayed on this page with a revised effective date.
+
+                </p>
+
+
+                <h3>
+                    13. Contact Us
+                </h3>
+
+                <p>
+
+                    For questions regarding this Privacy Policy or the handling of your information,
+                    please contact:
+
+                </p>
+
+
+                <p style="margin-top: 0.8rem;">
+
+                    <strong>
+                        EpicLuster
+                    </strong>
+
+                    <br>
+
+                    Email:
+
+                    <a href="mailto:daninduhathurusinghe@gmail.com" style="color: var(--primary-orange);">
+
+                        daninduhathurusinghe@gmail.com
+
+                    </a>
+
+                    <br>
+
+                    Phone:
+
+                    <a href="tel:+94770608910" style="color: var(--primary-orange);">
+
+                        +94 77 060 8910
+
+                    </a>
+
+                </p>
+
+
+                <a href="#" class="privacy-back" onclick="showSection('home'); return false;">
+
+                    <i class="fas fa-arrow-left"></i>
+
+                    Back to Home
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-logo">
+
+            EPIC<span>LUSTER</span>
+
+        </div>
+
+
+        <p class="footer-text">
+            Crafting Visual Stories That Inspire
+        </p>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 EpicLuster - The Production Company. All rights reserved.
+            </p>
+
+
+            <a href="#" class="privacy-link" onclick="showSection('privacy'); return false;">
+
+                Privacy Policies
+
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ==========================================
+     JAVASCRIPT
+     ========================================== -->
+<script>
+
+    /* ==========================================
+       LOADING SCREEN
+       ========================================== */
+    window.addEventListener('load', () => {
+
+        setTimeout(() => {
+
+            const loader =
+                document.getElementById('loader');
+
+            if (loader) {
+
+                loader.classList.add('hidden');
+
+            }
+
+        }, 2000);
+
+    });
+
+
+    /* ==========================================
+       SECTION NAVIGATION
+       ========================================== */
+    function showSection(sectionId) {
+
+        const sections =
+            document.querySelectorAll('.section');
+
+
+        sections.forEach(section => {
+
+            section.classList.remove('active');
+
+        });
+
+
+        const targetSection =
+            document.getElementById(sectionId);
+
+
+        if (targetSection) {
+
+            targetSection.classList.add('active');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        }
+
+
+        /* Update main navigation */
+        const navLinks =
+            document.querySelectorAll('.nav-link');
+
+
+        navLinks.forEach(link => {
+
+            link.classList.remove('active');
+
+
+            const onclickValue =
+                link.getAttribute('onclick') || '';
+
+
+            if (onclickValue.includes(sectionId)) {
+
+                link.classList.add('active');
+
+            }
+
+        });
+
+
+        const navMenu =
+            document.getElementById('navMenu');
+
+
+        if (navMenu) {
+
+            navMenu.classList.remove('active');
+
+        }
+
+
+        /* Reset mobile hamburger */
+        const mobileToggle =
+            document.getElementById('mobileMenuToggle');
+
+
+        if (mobileToggle) {
+
+            const spans =
+                mobileToggle.querySelectorAll('span');
+
+
+            spans.forEach(span => {
+
+                span.style.transform = 'none';
+
+            });
+
+
+            if (spans[1]) {
+
+                spans[1].style.opacity = '1';
+
+            }
+
+        }
+
+
+        /* Re-check visible animation elements */
+        setTimeout(() => {
+
+            document
+                .querySelectorAll(
+                    '#' + sectionId + ' .fade-in-scroll'
+                )
+                .forEach(el => {
+
+                    const rect =
+                        el.getBoundingClientRect();
+
+                    if (
+                        rect.top < window.innerHeight &&
+                        rect.bottom > 0
+                    ) {
+
+                        el.classList.add('visible');
+
+                    }
+
+                });
+
+        }, 50);
+
+    }
+
+
+    /* ==========================================
+       MOBILE MENU
+       ========================================== */
+    const mobileMenuToggle =
+        document.getElementById('mobileMenuToggle');
+
+    const navMenu =
+        document.getElementById('navMenu');
+
+
+    if (mobileMenuToggle && navMenu) {
+
+        mobileMenuToggle.addEventListener(
+            'click',
+            () => {
+
+                navMenu.classList.toggle('active');
+
+
+                const spans =
+                    mobileMenuToggle.querySelectorAll('span');
+
+
+                if (
+                    navMenu.classList.contains('active')
+                ) {
+
+                    spans[0].style.transform =
+                        'rotate(45deg) translate(5px, 5px)';
+
+                    spans[1].style.opacity = '0';
+
+                    spans[2].style.transform =
+                        'rotate(-45deg) translate(7px, -6px)';
+
+                } else {
+
+                    spans[0].style.transform = 'none';
+
+                    spans[1].style.opacity = '1';
+
+                    spans[2].style.transform = 'none';
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       SCROLL ANIMATIONS
+       ========================================== */
+    const observerOptions = {
+
+        threshold: 0.1,
+
+        rootMargin: '0px 0px -50px 0px'
+
+    };
+
+
+    const observer =
+        new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add(
+                            'visible'
+                        );
+
+                    }
+
+                });
+
+            },
+            observerOptions
+        );
+
+
+    document
+        .querySelectorAll('.fade-in-scroll')
+        .forEach(el => {
+
+            observer.observe(el);
+
+        });
+
+
+    /* ==========================================
+       GALLERY TABS
+       ========================================== */
+    function filterGallery(category) {
+
+        const buttons =
+            document.querySelectorAll(
+                '.gallery-tab-btn'
+            );
+
+
+        buttons.forEach(button => {
+
+            button.classList.remove('active');
+
+            const buttonAction =
+                button.getAttribute('onclick') || '';
+
+
+            if (
+                buttonAction.includes(
+                    "filterGallery('" + category + "')"
+                )
+            ) {
+
+                button.classList.add('active');
+
+            }
+
+        });
+
+
+        const contents =
+            document.querySelectorAll(
+                '.gallery-content'
+            );
+
+
+        contents.forEach(content => {
+
+            content.classList.remove('active');
+
+        });
+
+
+        const targetContent =
+            document.getElementById(category);
+
+
+        if (targetContent) {
+
+            targetContent.classList.add('active');
+
+        }
+
+    }
+
+
+    /* ==========================================
+       NAVBAR ON SCROLL
+       ========================================== */
+    let lastScroll = 0;
+
+
+    window.addEventListener('scroll', () => {
+
+        const navbar =
+            document.querySelector('.navbar');
+
+
+        const currentScroll =
+            window.pageYOffset;
+
+
+        if (!navbar) {
+
+            return;
+
+        }
+
+
+        if (currentScroll > 100) {
+
+            navbar.style.background =
+                'rgba(0, 0, 0, 0.95)';
+
+            navbar.style.padding =
+                '1rem 5%';
+
+        } else {
+
+            navbar.style.background =
+                'rgba(0, 0, 0, 0.9)';
+
+            navbar.style.padding =
+                '1.5rem 5%';
+
+        }
+
+
+        lastScroll = currentScroll;
+
+    });
+
+
+    /* ==========================================
+       TEAM / CAST IMAGE FALLBACK
+       ========================================== */
+    document
+        .querySelectorAll(
+            '.team-image img, .cast-image img'
+        )
+        .forEach(img => {
+
+            img.addEventListener(
+                'load',
+                function() {
+
+                    this.style.display = 'block';
+
+
+                    if (this.previousElementSibling) {
+
+                        this.previousElementSibling.style.display =
+                            'none';
+
+                    }
+
+                }
+            );
+
+
+            img.addEventListener(
+                'error',
+                function() {
+
+                    this.style.display = 'none';
+
+
+                    if (this.previousElementSibling) {
+
+                        this.previousElementSibling.style.display =
+                            'block';
+
+                    }
+
+                }
+            );
+
+        });
+
+
+    /* ==========================================
+       WHATSAPP CONTACT FORM
+       ========================================== */
+    const whatsappForm =
+        document.getElementById('whatsappForm');
+
+
+    if (whatsappForm) {
+
+        whatsappForm.addEventListener(
+            'submit',
+            function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById(
+                        'name'
+                    ).value.trim();
+
+
+                const email =
+                    document.getElementById(
+                        'email'
+                    ).value.trim();
+
+
+                const whatsapp =
+                    document.getElementById(
+                        'whatsapp'
+                    ).value.trim();
+
+
+                const message =
+                    document.getElementById(
+                        'message'
+                    ).value.trim();
+
+
+                /*
+                 * Stop the form if any field is empty.
+                 */
+                if (
+                    !name ||
+                    !email ||
+                    !whatsapp ||
+                    !message
+                ) {
+
+                    return;
+
+                }
+
+
+                /*
+                 * Create the WhatsApp message.
+                 */
+                const whatsappMessage =
+                    "Hello EpicLuster!\n\n" +
+                    "I would like to discuss a project.\n\n" +
+                    "Name: " +
+                    name +
+                    "\n\n" +
+                    "Email: " +
+                    email +
+                    "\n\n" +
+                    "WhatsApp Number: " +
+                    whatsapp +
+                    "\n\n" +
+                    "Message:\n" +
+                    message;
+
+
+                /*
+                 * EpicLuster WhatsApp number.
+                 * Country code is included without + or spaces.
+                 */
+                const whatsappNumber =
+                    "94770608910";
+
+
+                /*
+                 * Encode the complete message safely
+                 * for use inside the WhatsApp URL.
+                 */
+                const encodedMessage =
+                    encodeURIComponent(
+                        whatsappMessage
+                    );
+
+
+                /*
+                 * WhatsApp direct chat URL.
+                 */
+                const whatsappURL =
+                    "https://wa.me/" +
+                    whatsappNumber +
+                    "?text=" +
+                    encodedMessage;
+
+
+                /*
+                 * Open WhatsApp in a new tab.
+                 */
+                window.open(
+                    whatsappURL,
+                    "_blank",
+                    "noopener,noreferrer"
+                );
+
+            }
+        );
+
+    }
+
+</script>
+
+
+</body></html>
